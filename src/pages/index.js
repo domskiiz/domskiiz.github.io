@@ -37,7 +37,7 @@ class IndexPage extends React.Component {
   }
 
   _handleMouseMove = (e) => {
-    if (this.state.screenX < 414) {
+    if (this.state.screenX <= 414) {
       return;
     }
     this.setState({ x: e.clientX, y: e.clientY  });

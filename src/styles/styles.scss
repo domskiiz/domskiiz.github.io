@@ -18,6 +18,12 @@ div::selection {
   background: #dff9fb;
 }
 
+div {
+  font-family: halyard-display, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .main {
   &_container {
     background-color: #F1F2F6;
