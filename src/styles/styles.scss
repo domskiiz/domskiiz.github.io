@@ -36,11 +36,11 @@ div {
     justify-content: flex-end;
   }
   &_greeting {
-    font-size: 48px;
+    font-size: 36px;
   }
   &_subtext {
-    font-size: 24px;
-    margin: 24px 0;
+    font-size: 18px;
+    margin: 18px 0;
   }
   &_info {
     padding: 64px;
@@ -53,8 +53,8 @@ div {
     padding: 64px;
     .link {
       text-align: right;
-      margin-bottom: 24px;
-      font-size: 24px;
+      margin-bottom: 18px;
+      font-size: 18px;
     }
   }
 }
@@ -71,11 +71,11 @@ div {
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .main {
     &_greeting {
-      font-size: 48px;
+      font-size: 32px;
     }
     &_subtext {
-      font-size: 24px;
-      margin: 24px 0;
+      font-size: 14px;
+      margin: 14px 0;
     }
     &_info {
       padding: 48px;
@@ -93,11 +93,11 @@ div {
 @media only screen and (min-width: 375px) and (max-width: 768px) {
   .main {
     &_greeting {
-      font-size: 36px;
+      font-size: 32px;
     }
     &_subtext {
-      font-size: 18px;
-      margin: 18px 0;
+      font-size: 14px;
+      margin: 14px 0;
     }
     &_info {
       padding: 36px;
@@ -106,8 +106,8 @@ div {
     &_links {
       padding: 36px;
       .link {
-        font-size: 18px;
-        margin-bottom: 18px;
+        font-size: 14px;
+        margin-bottom: 14px;
       }
     }
   }
@@ -120,7 +120,7 @@ div {
       padding: 12px 0;
     }
     &_subtext {
-      font-size: 18px;
+      font-size: 14px;
       margin: 8px 0;
     }
     &_info {
