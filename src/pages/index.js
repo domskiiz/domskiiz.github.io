@@ -95,11 +95,11 @@ class IndexPage extends React.Component {
               style={{ 'color': this._interpolateColors('#5352ed', '#ff4757', this.state.x / this.state.screenX) }}>
               {this._parseTrackData(this.state.spotifyData[0])}
             </a>,&nbsp;
-            <a href={this.state.spotifyData[0].track.external_urls.spotify} target="_blank" rel="noopener noreferrer"
+            <a href={this.state.spotifyData[1].track.external_urls.spotify} target="_blank" rel="noopener noreferrer"
               style={{ 'color': this._interpolateColors('#5352ed', '#ff4757', this.state.x / this.state.screenX) }}>
               {this._parseTrackData(this.state.spotifyData[1])}
             </a>, and&nbsp;
-            <a href={this.state.spotifyData[0].track.external_urls.spotify} target="_blank" rel="noopener noreferrer"
+            <a href={this.state.spotifyData[2].track.external_urls.spotify} target="_blank" rel="noopener noreferrer"
               style={{ 'color': this._interpolateColors('#5352ed', '#ff4757', this.state.x / this.state.screenX) }}>
               {this._parseTrackData(this.state.spotifyData[2])}
             </a>
