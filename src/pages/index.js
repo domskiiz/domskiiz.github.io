@@ -1,4 +1,6 @@
 import React from 'react'
+import ReactLoading from 'react-loading'
+
 import '../styles/styles.scss'
 
 class IndexPage extends React.Component {
@@ -10,21 +12,27 @@ class IndexPage extends React.Component {
       y: 0,
       screenX: 1,
       screenY: 1,
-      spotifyData: []
+      spotifyData: [],
+      isLoading: true
     };
   }
 
   componentDidMount = () => {
-    fetch('https://spotify-server-personal-site.herokuapp.com/refresh_token')
-    fetch('https://spotify-server-personal-site.herokuapp.com/getSongs')
+    fetch(process.env.SPOTIFY_URL + '/refresh_token')
+    fetch(process.env.SPOTIFY_URL + '/getSongs')
       .then(res => res.json())
-      .then(data => {console.log(data); this.setState({ spotifyData: data.items })})
+      .then(data => {
+        this.setState({ spotifyData: data.items })
+        setTimeout(() => {
+          this.setState({ isLoading: false })
+        }, 2400)
+      })
     this._handleResize()
     window.addEventListener('resize', this._handleResize.bind(this))
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener("resize", this._handleResize.bind(this));
+    window.removeEventListener('resize', this._handleResize.bind(this));
   }
 
   _handleResize = () => {
@@ -40,7 +48,7 @@ class IndexPage extends React.Component {
     if (this.state.screenX <= 414) {
       return;
     }
-    this.setState({ x: e.clientX, y: e.clientY  });
+    this.setState({ x: e.clientX, y: e.clientY });
   }
 
   _interpolateColors = (first, second, delta) => {
@@ -72,7 +80,7 @@ class IndexPage extends React.Component {
 
 
   render = () => (
-    this.state.spotifyData.length > 0
+    !this.state.isLoading
     ?
       <div style={{ 'backgroundColor': this._interpolateColors('#F1F2F6', '#1e272e', this.state.x / this.state.screenX) }}
            onPointerMove={(e) => this._handleMouseMove(e)}
@@ -155,7 +163,11 @@ class IndexPage extends React.Component {
           </div>
         </div>
       </div>
-    : null
+    : <div style={{ 'backgroundColor': this._interpolateColors('#F1F2F6', '#1e272e', this.state.x / this.state.screenX) }}
+            onPointerMove={(e) => this._handleMouseMove(e)}
+            className="main_container_loading">
+      <ReactLoading color={this._interpolateColors('#5352ed', '#ff4757', this.state.x / this.state.screenX)} height={100} width={100} />
+    </div>
   )
 }
 
