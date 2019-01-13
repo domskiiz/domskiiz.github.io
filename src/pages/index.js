@@ -22,10 +22,11 @@ class IndexPage extends React.Component {
     fetch(process.env.SPOTIFY_URL + '/getSongs')
       .then(res => res.json())
       .then(data => {
-        this.setState({ spotifyData: data.items })
-        setTimeout(() => {
-          this.setState({ isLoading: false })
-        }, 2400)
+        this.setState({ spotifyData: data.items }, () => {
+          setTimeout(() => {
+            this.setState({ isLoading: false })
+          }, 2400)
+        })
       })
     this._handleResize()
     window.addEventListener('resize', this._handleResize.bind(this))
@@ -72,7 +73,10 @@ class IndexPage extends React.Component {
     } else if (artists.length === 2) {
       artistsString = artists.join(' and ')
     } else {
-      artistsString = artists.join(' ,')
+      let lastArtist = artists[artists.length - 1]
+      let extractedLast = artists.slice(0, artists.length - 1)
+      artistsString = extractedLast.join(', ')
+      artistsString += ', and ' + lastArtist
     }
 
     return title + ' by ' + artistsString
@@ -88,7 +92,15 @@ class IndexPage extends React.Component {
         <div className="main_info">
           <div className="main_greeting">Hey, I'm Alissa.</div>
           <div className="main_subtext">I'm a third year computer science major @ UCLA.</div>
-          <div className="main_subtext">I'm also an organizational nerd, poke enthusiast, and part time (somewhat) professional hairdresser.</div>
+          <div className="main_subtext">I'm also an organizational nerd, poke enthusiast, and part time (somewhat) professional&nbsp;
+            <a href="https://instagram.com/hairbydomskiiz"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ 'color': this._interpolateColors('#5352ed', '#ff4757', this.state.x / this.state.screenX )}}>
+                hairdresser
+              </a>
+          .
+          </div>
           <div className="main_subtext">Currently building frontend for&nbsp;
             <a href="https://helloyumi.com"
                target="_blank"
@@ -157,7 +169,7 @@ class IndexPage extends React.Component {
           <div className="link">Resume&nbsp;
             <a
               style={{ 'color': this._interpolateColors('#5352ed', '#ff4757', this.state.x / this.state.screenX) }}
-              href='an-resume2018.pdf' target="_blank" rel="noopener noreferrer">
+              href='AlissaNiewiadomski-Resume.pdf' target="_blank" rel="noopener noreferrer">
               here
             </a>
           </div>
